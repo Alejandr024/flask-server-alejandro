@@ -14,10 +14,13 @@
         <nav>
             <ul>
                 <li>
-                    <a href="/">Inicio</a>
+                    <a href="{{ url_for('home') }}">Inicio</a>
                 </li>
                 <li>
-                    <a href="/saludo/amigo">Saluda</a>
+                    <a href="{{ url_for('mostrar_saludo', name='invitado') }}">Saluda</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('catalogo')}}">Catalogo</a>
                 </li>
             </ul>
         </nav>
@@ -26,7 +29,7 @@
     <main>
         <h1>Contenido de mi página</h1>
         {% block content %} {% endblock %}
-    </main> 
+    </main>
     <footer>
         <hr />
         <p>2026&copy;IES Las Galletas</p>

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{%block title %}Producto{% endblock %}
+{% block content %}
+<h2>Producto: {{idProducto+1}}</h2>
+<ul>
+    <li>Nombre: <strong>{{ product.nombre }}</strong></li>
+    <li>Precio: <strong>{{ product.precio }}</strong>€</li>
+</ul>
+{% endblock %}

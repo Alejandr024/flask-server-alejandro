@@ -1,5 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 
+products = [
+    {"nombre": "Teclado Mecánico", "precio": 49.99, "disponible": True},
+    {"nombre": "Ratón Óptico", "precio": 19.99, "disponible": False},
+    {"nombre": "Monitor 4K", "precio": 299.99, "disponible": True},
+]
 # Inicializamos la aplicación
 app = Flask(__name__)
 
@@ -14,11 +19,6 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/saludo")
-def saludo():
-    return "<h1>Bienvenido a Flask</h1>"
-
-
 @app.route("/saludo/<name>")
 def mostrar_saludo(name):
     return render_template("greetings.html", name_greetings=name)
@@ -29,15 +29,15 @@ def multiplicar(n1, n2):
     return f"<p>La multiplicación de {n1} x {n2} es de {n1 * n2}</p>"
 
 
-@app.route("/catalogo/<int:id_product>")
-def catalogo(id_product):
-    products = [
-        {"nombre": "Teclado Mecánico", "precio": 49.99, "disponible": True},
-        {"nombre": "Ratón Óptico", "precio": 19.99, "disponible": False},
-        {"nombre": "Monitor 4K", "precio": 299.99, "disponible": True},
-    ]
+@app.route("/catalogo")
+def catalogo():
+    return render_template("catalogo.html", nombre="algo", lista_products=products)
+
+
+@app.route("/catalogo/<int:idProducto>")
+def producto(idProducto):
     return render_template(
-        "catalogo.html", nombre="algo", id_product=id_product, lista_products=products
+        "producto.html", idProducto=idProducto, product=products[idProducto]
     )
 
 
