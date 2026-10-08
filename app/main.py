@@ -1,5 +1,5 @@
 from data.productos import products
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 
 # Inicializamos la aplicación
 app = Flask(__name__)
@@ -35,6 +35,38 @@ def producto(idProducto):
     return render_template(
         "producto.html", idProducto=idProducto, product=products[idProducto]
     )
+
+
+@app.route("/contacto", methods=["GET"])
+def contacto():
+    return render_template("contacto.html")
+
+
+@app.route("/contacto", methods=["POST"])
+def contacto_post():
+    nombre = request.form.get("nombre")
+    mensaje = request.form.get("mensaje")
+    return render_template("contacto-data.html", nombre=nombre, mensaje=mensaje)
+
+
+@app.route("/filtrar")
+def filtrar():
+    return render_template("filtrar.html")
+
+
+@app.route("/filtrar-data", methods=["GET"])
+def filtrar_data():
+    precio_min = request.args.get("precio_min", type=float)
+    precio_max = request.args.get("precio_max", type=float)
+
+    print(f"Precio minimo: {precio_min}")
+    productos_filtrados = [
+        producto
+        for producto in products
+        if precio_min <= producto["precio"] <= precio_max
+    ]
+    print(productos_filtrados)
+    return render_template("filtrar-data.html", lista_products=productos_filtrados)
 
 
 if __name__ == "__main__":

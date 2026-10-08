@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Filtrar{% endblock %}
+
+{% block content %}
+<h1>Catálogo Filtrado</h1>
+<h3>Listado de productos filtrados</h3>
+<ul>
+    {% for product in lista_products%}
+    <li>
+        <strong>
+            <a href="{{ url_for('producto', idProducto=loop.index-1) }}">{{product.nombre}}</a></strong>
+        {{product.precio}}€
+        {% if product.disponible %}
+        <span style="color:green">En stock</span>
+        {% else %}
+        <span style="color:red">Agotado</span>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

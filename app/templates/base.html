@@ -23,6 +23,12 @@
                 <li>
                     <a href="{{ url_for('catalogo')}}">Catalogo</a>
                 </li>
+                <li>
+                    <a href="{{ url_for('contacto')}}">Contacto</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('filtrar')}}">Filtrar</a>
+                </li>
             </ul>
         </nav>
         <hr />
@@ -34,6 +40,7 @@
     <footer>
         <hr />
         <p>2026&copy;IES Las Galletas</p>
+        <img src="{{ url_for('static', filename='IMG/LaSotanita.jpg') }}" alt="Toca y vete cacahuete">
     </footer>
 </body>
 
