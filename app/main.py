@@ -1,10 +1,6 @@
+from data.productos import products
 from flask import Flask, render_template, url_for
 
-products = [
-    {"nombre": "Teclado Mecánico", "precio": 49.99, "disponible": True},
-    {"nombre": "Ratón Óptico", "precio": 19.99, "disponible": False},
-    {"nombre": "Monitor 4K", "precio": 299.99, "disponible": True},
-]
 # Inicializamos la aplicación
 app = Flask(__name__)
 
