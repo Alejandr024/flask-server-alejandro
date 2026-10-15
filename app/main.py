@@ -36,10 +36,10 @@ def catalogo():
 @app.route("/catalogo/<int:idProducto>")
 def producto(idProducto):
     if 0 <= idProducto <= len(products):  # error fuera de rango, mirar
-        abort(404)
-    return render_template(
-        "producto.html", idProducto=idProducto, product=products[idProducto]
-    )
+        return render_template(
+            "producto.html", idProducto=idProducto, product=products[idProducto]
+        )
+    abort(404)
 
 
 @app.route("/contacto", methods=["GET"])
